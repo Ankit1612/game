@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valentine Website For Poonam 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Comic Sans MS', cursive, sans-serif;
+      background:linear-gradient(135deg,#ff5f9e,#ffb6c1);
+      overflow:hidden;
+    }
+    .page{
+      display:none;
+      min-height:100vh;
+      padding:20px;
+      text-align:center;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      position:relative;
+    }
+    .page.active{display:flex}
+    h1{font-size:clamp(24px,6vw,42px)}
+    p{font-size:clamp(16px,4.5vw,20px)}
+    button{
+      padding:14px 30px;
+      margin:12px;
+      font-size:clamp(16px,4vw,20px);
+      border:none;
+      border-radius:30px;
+      cursor:pointer;
+      background:#ff2d6f;
+      color:#fff;
+    }
+    input{
+      padding:14px;
+      border-radius:30px;
+      border:none;
+      font-size:20px;
+      width:90%;
+      max-width:320px;
+      text-align:center;
+    }
+    img{
+      width:240px;
+      max-width:70vw;
+      animation:float 3s ease-in-out infinite;
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-15px)}
+    }
+
+    .heart{
+      position:absolute;
+      top:-30px;
+      animation:fall linear infinite;
+      font-size:22px;
+      pointer-events:none;
+    }
+    @keyframes fall{to{transform:translateY(120vh)}}
+
+    .firework{
+      position:absolute;
+      width:6px;height:6px;
+      border-radius:50%;
+      animation:explode 1.5s ease-out forwards;
+    }
+    @keyframes explode{
+      from{transform:scale(0);opacity:1}
+      to{transform:scale(8);opacity:0}
+    }
+
+    .confetti{
+      position:fixed;
+      width:8px;height:14px;
+      animation:confFall 3s linear forwards;
+    }
+    @keyframes confFall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+    .card-wrap{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:20px;
+    }
+    .gift-card{
+      width:220px;
+      background:#fff;
+      border-radius:20px;
+      padding:15px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+      cursor:pointer;
+      transition:transform 0.3s, box-shadow 0.3s;
+    }
+    .gift-card:hover{
+      transform:translateY(-10px) scale(1.05);
+      box-shadow:0 15px 35px rgba(0,0,0,0.3);
+    }
+    .gift-card img{
+      width:100%;
+      border-radius:15px;
+      margin-bottom:10px;
+    }
+    .gift-card h3{
+      color:#ff2d6f;
+    }
+
+    .puzzle{
+      display:grid;
+      grid-template-columns:repeat(3,100px);
+      gap:4px;
+      margin:20px auto;
+    }
+    .piece{
+      width:100px;height:100px;
+      background-image:url('https://images.unsplash.com/photo-1526045612212-70caf35c14df');
+      background-size:300px 300px;
+      cursor:grab;
+    }
+  </style>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c3c8b4c1c.mp3" type="audio/mpeg">
+  </audio>
+</head>
+<body>
+
+<div class="page active" id="page1">
+  <h1>For My Heart ❤️</h1>
+  <p>Only love can unlock what’s inside</p>
+  <input id="pwd" type="password" />
+  <button onclick="checkPassword()">Unlock My Heart 💖</button>
+</div>
+
+<div class="page" id="page2">
+  <h1>Will you be my Valentine? 💕</h1>
+  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" />
+  <div>
+    <button id="yesBtn" onclick="sayYes()">Yes 😍</button>
+    <button id="noBtn" onclick="moveNo()">No 😝</button>
+  </div>
+</div>
+
+<div class="page" id="page3">
+  <h1>Happy Valentine’s Day Motu ❤️🌹</h1>
+  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" />
+  <button onclick="showPage('page4')">Something for you 🎁</button>
+</div>
+
+<div class="page" id="page4">
+  <h1>From My Heart to Yours 💝</h1>
+  <div class="card-wrap">
+    <div class="gift-card" onclick="showPage('gift1')">
+      <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" />
+      <h3>A Love Letter 💌</h3>
+    </div>
+    <div class="gift-card" onclick="showPage('gift2')">
+      <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" />
+      <h3>Puzzle of Love 🧩</h3>
+    </div>
+    <div class="gift-card" onclick="showPage('gift3')">
+      <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" />
+      <h3>Song for You 🎵</h3>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="gift1">
+  <h1>A Letter for You 💌</h1>
+  <p style="max-width:750px;line-height:1.9">
+    Hi Motu,<br><br>
+    From the moment you walked into my life, everything started feeling warmer, softer, and more meaningful. You are my calm, my happiness, my safe place, and my forever.<br><br>
+    I choose you every single day — in smiles, in silence, in storms, and in sunshine. Loving you is my favorite thing to do.<br><br>
+    Always yours,<br>Ankit ❤️
+  </p>
+  <button onclick="showPage('page4')">⬅ Back</button>
+</div>
+
+<div class="page" id="gift2">
+  <h1>Solve the Puzzle 🧩</h1>
+  <div class="puzzle" id="puzzle"></div>
+  <div id="puzzleDone" style="display:none">
+    <h2>Congratulations My Love 💖</h2>
+    <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df" />
+  </div>
+  <button onclick="showPage('page4')">⬅ Back</button>
+</div>
+
+<div class="page" id="gift3">
+  <h1>A Song for You 🎵</h1>
+  <iframe width="320" height="180" src="https://www.youtube.com/embed/RLzC55ai0eo" allowfullscreen></iframe>
+  <button onclick="showPage('page4')">⬅ Back</button>
+</div>
+
+<script>
+  function showPage(id){
+    const music=document.getElementById('bgMusic');
+    if(id!=='page1' && id!=='gift3'){
+      music.volume=0.4;
+      music.muted=false;
+      music.play().catch(()=>{});
+    }
+    if(id==='gift3') music.pause();
+
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const page=document.getElementById(id);
+    page.classList.add('active');
+
+    if(id==='page1') heartRain(page,'💗');
+    if(id==='page2') heartRain(page,'💖');
+    if(id==='page3'){ heartRain(page,'❤️'); fireworks(page); }
+  }
+
+  function checkPassword(){
+    const v=document.getElementById('pwd').value.trim().toLowerCase();
+    if(v==='iloveyou'){
+      const music=document.getElementById('bgMusic');
+      music.volume=0.4;
+      music.muted=false;
+      music.play().catch(()=>{});
+      showPage('page2');
+    } else {
+      alert('Wrong password 😜');
+    }
+  }
+
+  let yesScale=1;
+  function moveNo(){
+    const no=document.getElementById('noBtn');
+    yesScale+=0.15;
+    document.getElementById('yesBtn').style.transform=`scale(${yesScale})`;
+    no.style.position='absolute';
+    no.style.left=Math.random()*70+'vw';
+    no.style.top=Math.random()*70+'vh';
+  }
+
+  function sayYes(){ showPage('page3'); }
+
+  function heartRain(container,emoji){
+    const interval=setInterval(()=>{
+      if(!container.classList.contains('active')){ clearInterval(interval); return; }
+      const h=document.createElement('div');
+      h.className='heart';
+      h.innerText=emoji;
+      h.style.left=Math.random()*100+'vw';
+      h.style.animationDuration=3+Math.random()*3+'s';
+      container.appendChild(h);
+      setTimeout(()=>h.remove(),6000);
+    },400);
+  }
+
+  function fireworks(container){
+    const interval=setInterval(()=>{
+      if(!container.classList.contains('active')){ clearInterval(interval); return; }
+      const f=document.createElement('div');
+      f.className='firework';
+      f.style.left=Math.random()*100+'vw';
+      f.style.top=Math.random()*60+'vh';
+      f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+      container.appendChild(f);
+      setTimeout(()=>f.remove(),1500);
+    },600);
+  }
+
+  const puzzle=document.getElementById('puzzle');
+  let dragged;
+  const order=[...Array(9).keys()].sort(()=>Math.random()-0.5);
+  order.forEach(i=>{
+    const d=document.createElement('div');
+    d.className='piece';
+    d.style.backgroundPosition=`${-(i%3)*100}px ${-Math.floor(i/3)*100}px`;
+    d.draggable=true;
+    d.addEventListener('dragstart',()=>dragged=d);
+    d.addEventListener('dragover',e=>e.preventDefault());
+    d.addEventListener('drop',()=>{
+      const tmp=dragged.style.backgroundPosition;
+      dragged.style.backgroundPosition=d.style.backgroundPosition;
+      d.style.backgroundPosition=tmp;
+      checkPuzzle();
+    });
+    puzzle.appendChild(d);
+  });
+
+  function checkPuzzle(){
+    const pieces=[...document.querySelectorAll('.piece')];
+    let done=true;
+    pieces.forEach((p,i)=>{
+      if(p.style.backgroundPosition!==`${-(i%3)*100}px ${-Math.floor(i/3)*100}px`) done=false;
+    });
+    if(done){
+      puzzle.style.display='none';
+      document.getElementById('puzzleDone').style.display='block';
+      confettiBurst();
+    }
+  }
+
+  function confettiBurst(){
+    for(let i=0;i<80;i++){
+      const c=document.createElement('div');
+      c.className='confetti';
+      c.style.left=Math.random()*100+'vw';
+      c.style.background=`hsl(${Math.random()*360},100%,60%)`;
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),3000);
+    }
+  }
+</script>
+</body>
+</html>
