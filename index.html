@@ -116,12 +116,14 @@
       gap:4px;
       margin:20px auto;
     }
-    .piece{
-      width:100px;height:100px;
-      background-image:url('https://images.unsplash.com/photo-1526045612212-70caf35c14df');
-      background-size:300px 300px;
-      cursor:grab;
-    }
+.piece{
+  width:100px;
+  height:100px;
+  background-image:url('puzzle.jpg'); /* ← your image */
+  background-size:300px 300px;
+  background-repeat:no-repeat;
+  cursor:grab;
+}
   </style>
   <audio id="bgMusic" loop preload="auto">
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c3c8b4c1c.mp3" type="audio/mpeg">
@@ -138,7 +140,7 @@
 
 <div class="page" id="page2">
   <h1>Will you be my Valentine? 💕</h1>
-  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" />
+  <img src="bg-hearts.png" />
   <div>
     <button id="yesBtn" onclick="sayYes()">Yes 😍</button>
     <button id="noBtn" onclick="moveNo()">No 😝</button>
@@ -147,7 +149,7 @@
 
 <div class="page" id="page3">
   <h1>Happy Valentine’s Day Motu ❤️🌹</h1>
-  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" />
+  <img src="cat-hug.png" />
   <button onclick="showPage('page4')">Something for you 🎁</button>
 </div>
 
@@ -155,15 +157,15 @@
   <h1>From My Heart to Yours 💝</h1>
   <div class="card-wrap">
     <div class="gift-card" onclick="showPage('gift1')">
-      <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" />
+      <img src="gift1.png" />
       <h3>A Love Letter 💌</h3>
     </div>
     <div class="gift-card" onclick="showPage('gift2')">
-      <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" />
+      <img src="gift2.png" />
       <h3>Puzzle of Love 🧩</h3>
     </div>
     <div class="gift-card" onclick="showPage('gift3')">
-      <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" />
+      <img src="gift3.png" />
       <h3>Song for You 🎵</h3>
     </div>
   </div>
@@ -184,9 +186,9 @@
   <h1>Solve the Puzzle 🧩</h1>
   <div class="puzzle" id="puzzle"></div>
   <div id="puzzleDone" style="display:none">
-    <h2>Congratulations My Love 💖</h2>
-    <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df" />
-  </div>
+  <h2>Congratulations My Love 💖</h2>
+  <img src="puzzle.jpg" />
+    </div>
   <button onclick="showPage('page4')">⬅ Back</button>
 </div>
 
